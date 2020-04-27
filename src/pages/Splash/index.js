@@ -1,35 +1,34 @@
-import React, { Component } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  StatusBar,
-} from "react-native";
+import React from "react";
+import { View, Text, TouchableOpacity, StatusBar } from "react-native";
 
-function Home(props) {
+import styles from "./styles";
+import Button from "../../components/Button";
+
+function Splash(props) {
   return (
     <View style={styles.container}>
+      <StatusBar animated={true} barStyle="light-content" />
       <View style={styles.logo}></View>
       <Text style={styles.text}>
         Conectando as melhores empresas aos melhores profissionais.
       </Text>
-      <TouchableOpacity
+
+      <Button
+        label="Cadastre-se"
         onPress={() => props.navigation.navigate("Register")}
-        style={styles.createButton}
-      >
-        <Text style={styles.createButtonText}>Cadastre-se</Text>
-      </TouchableOpacity>
+      />
+
       <View style={styles.footer}>
-        <Text style={styles.footerText}>Ja tem uma conta?</Text>
+        <Text style={styles.footerText}>Já tem uma conta?</Text>
         <TouchableOpacity
           onPress={() => props.navigation.navigate("Login")}
           style={styles.footerLink}
         >
-          <Text style={styles.entre}>Entre</Text>
+          <Text style={styles.footerLinkText}>Entre aqui!</Text>
         </TouchableOpacity>
       </View>
-      <StatusBar animated={true} barStyle="light-content"></StatusBar>
     </View>
   );
 }
+
+export default Splash;
