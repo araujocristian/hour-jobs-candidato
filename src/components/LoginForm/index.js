@@ -7,10 +7,6 @@ import Button from '../Button';
 
 import styles from './styles';
 
-let defaults = {
-  cpf: '',
-};
-
 class LoginForm extends Component {
   constructor(props) {
     super(props);
@@ -26,10 +22,11 @@ class LoginForm extends Component {
     this.passwordRef = this.updateRef.bind(this, 'password');
 
     this.renderPasswordAccessory = this.renderPasswordAccessory.bind(this);
+    this.handleValidate = this.handleValidate.bind(this);
 
     this.state = {
       secureTextEntry: true,
-      ...defaults,
+      cpf: '',
     };
   }
 
@@ -71,30 +68,38 @@ class LoginForm extends Component {
     this.password.blur();
   }
 
-  onSubmit() {
+  handleValidate() {
     let errors = {};
+    let haveError = false;
 
     ['cpf', 'password'].forEach((name) => {
       let value = this[name].value();
 
       if (!value) {
         errors[name] = 'Parece que você esqueceu esse campo.';
+        haveError = true;
       } else {
         if ('password' === name && value.length < 6) {
           errors[name] = 'Senha muito curta.';
+          haveError = true;
         }
 
         if ('cpf' === name && value.length < 11) {
           errors[name] = 'CPF inválido.';
+          haveError = true;
         } else if ('cpf' === name && !cpf.isValid(value)) {
           errors[name] = 'CPF inválido.';
+          haveError = true;
         }
       }
     });
 
     this.setState({ errors });
+    return !haveError;
+  }
 
-    this.props.navigation.navigate('Home');
+  onSubmit() {
+    if (this.handleValidate()) this.props.navigation.navigate('Home');
   }
 
   updateRef(name, ref) {
@@ -118,7 +123,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    let { errors = {}, secureTextEntry } = this.state;
+    let { errors = {}, secureTextEntry, cpf } = this.state;
 
     return (
       <SafeAreaView style={styles.safeContainer}>
@@ -130,7 +135,7 @@ class LoginForm extends Component {
           <View style={styles.container}>
             <TextField
               ref={this.CPFRef}
-              value={defaults.cpf}
+              value={cpf}
               keyboardType="phone-pad"
               autoCorrect={false}
               enablesReturnKeyAutomatically={true}

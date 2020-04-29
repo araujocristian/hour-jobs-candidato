@@ -1,10 +1,10 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 const Home = () => {
   return (
     <View>
-      <Text></Text>
+      <Text>HOME</Text>
     </View>
   );
 };

@@ -7,7 +7,6 @@ export default StyleSheet.create({
 
   container: {
     margin: 8,
-    marginTop: Platform.select({ ios: 8, android: 32 }),
     flex: 1,
   },
 
@@ -20,5 +19,7 @@ export default StyleSheet.create({
     margin: 8,
   },
 
-  safeContainer: {},
+  safeContainer: {
+    paddingBottom: 5,
+  },
 });
