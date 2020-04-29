@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, SafeAreaView, Platform } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import { cpf } from 'cpf-cnpj-validator';
 import { TextField } from 'react-native-material-textfield';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -7,12 +7,6 @@ import Button from '../Button';
 
 import styles from './styles';
 
-let defaults = {
-  firstname: 'Eddard',
-  lastname: 'Stark',
-  about:
-    'Stoic, dutiful, and honorable man, considered to embody the values of the North',
-};
 class RegisterForm extends Component {
   constructor(props) {
     super(props);
@@ -20,25 +14,29 @@ class RegisterForm extends Component {
     this.onFocus = this.onFocus.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeText = this.onChangeText.bind(this);
-    this.onSubmitFirstName = this.onSubmitFirstName.bind(this);
-    this.onSubmitLastName = this.onSubmitLastName.bind(this);
-    this.onSubmitAbout = this.onSubmitAbout.bind(this);
+    this.onSubmitName = this.onSubmitName.bind(this);
     this.onSubmitEmail = this.onSubmitEmail.bind(this);
+    this.onSubmitCPF = this.onSubmitCPF.bind(this);
     this.onSubmitPassword = this.onSubmitPassword.bind(this);
+    this.onSubmitBirthDate = this.onSubmitBirthDate.bind(this);
     this.onAccessoryPress = this.onAccessoryPress.bind(this);
 
-    this.firstnameRef = this.updateRef.bind(this, 'firstname');
-    this.lastnameRef = this.updateRef.bind(this, 'lastname');
-    this.aboutRef = this.updateRef.bind(this, 'about');
+    this.nameRef = this.updateRef.bind(this, 'name');
     this.emailRef = this.updateRef.bind(this, 'email');
+    this.CPFRef = this.updateRef.bind(this, 'cpf');
     this.passwordRef = this.updateRef.bind(this, 'password');
+    this.cellPhoneRef = this.updateRef.bind(this, 'cellPhone');
+    this.birthDateRef = this.updateRef.bind(this, 'birthDate');
     this.houseRef = this.updateRef.bind(this, 'house');
 
     this.renderPasswordAccessory = this.renderPasswordAccessory.bind(this);
 
     this.state = {
       secureTextEntry: true,
-      ...defaults,
+      name: '',
+      cpf: '',
+      birthDate: '',
+      cellPhone: '',
     };
   }
 
@@ -57,7 +55,7 @@ class RegisterForm extends Component {
   }
 
   onChangeText(text) {
-    ['firstname', 'lastname', 'about', 'email', 'password']
+    ['name', 'cpf', 'cellPhone', 'birthDate', 'email', 'password']
       .map((name) => ({ name, ref: this[name] }))
       .forEach(({ name, ref }) => {
         if (ref.isFocused()) {
@@ -72,42 +70,64 @@ class RegisterForm extends Component {
     }));
   }
 
-  onSubmitFirstName() {
-    this.lastname.focus();
-  }
-
-  onSubmitLastName() {
-    this.about.focus();
-  }
-
-  onSubmitAbout() {
+  onSubmitName() {
     this.email.focus();
   }
 
   onSubmitEmail() {
+    this.cpf.focus();
+  }
+
+  onSubmitCPF() {
     this.password.focus();
   }
 
   onSubmitPassword() {
-    this.password.blur();
+    this.cellPhone.focus();
+  }
+
+  onSubmitCellPhone() {
+    this.birthDate.focus();
+  }
+
+  onSubmitBirthDate() {
+    this.birthDate.blur();
+  }
+
+  handleValidate() {
+    let errors = {};
+    let haveError = false;
+
+    ['name', 'email', 'cpf', 'password', 'cellPhone', 'birthDate'].forEach(
+      (name) => {
+        let value = this[name].value();
+
+        if (!value) {
+          errors[name] = 'Parece que você esqueceu esse campo.';
+          haveError = true;
+        } else {
+          if ('password' === name && value.length < 6) {
+            errors[name] = 'Senha muito curta.';
+            haveError = true;
+          }
+
+          if ('cpf' === name && value.length < 11) {
+            errors[name] = 'CPF inválido.';
+            haveError = true;
+          } else if ('cpf' === name && !cpf.isValid(value)) {
+            errors[name] = 'CPF inválido.';
+            haveError = true;
+          }
+        }
+      }
+    );
+
+    this.setState({ errors });
+    return !haveError;
   }
 
   onSubmit() {
-    let errors = {};
-
-    ['firstname', 'lastname', 'email', 'password'].forEach((name) => {
-      let value = this[name].value();
-
-      if (!value) {
-        errors[name] = 'Should not be empty';
-      } else {
-        if ('password' === name && value.length < 6) {
-          errors[name] = 'Too short';
-        }
-      }
-    });
-
-    this.setState({ errors });
+    if (this.handleValidate()) this.props.navigation.navigate('Home');
   }
 
   updateRef(name, ref) {
@@ -130,59 +150,43 @@ class RegisterForm extends Component {
     );
   }
 
+  formatCPF = (text) => {
+    return text.replace(/^(\d{3})(\d{3})(\d{3})(\d{2}).*/, '$1.$2.$3-$4');
+  };
+
+  formatCellPhone = (text) => {
+    return text
+      .replace(/^(\d{2})(\d)/g, '($1) $2')
+      .replace(/(\d{5})(\d{4})$/, '$1-$2');
+  };
+
+  formatBirthDate = (text) => {
+    return text.replace(/^(\d{2})(\d{2})(\d{4})/g, '$1/$2/$3');
+    // .replace(/(\d{5})(\d{4})$/, '$1-$2');
+  };
+
   render() {
     let { errors = {}, secureTextEntry, ...data } = this.state;
-    let { firstname, lastname } = data;
-
-    let defaultEmail = `${firstname || 'name'}@${lastname || 'house'}.com`
-      .replace(/\s+/g, '_')
-      .toLowerCase();
+    let { name, cpf, cellPhone, birthDate } = data;
 
     return (
       <SafeAreaView style={styles.safeContainer}>
         <View style={styles.container}>
           <TextField
-            ref={this.firstnameRef}
-            value={defaults.firstname}
+            ref={this.nameRef}
+            value={name}
             autoCorrect={false}
             enablesReturnKeyAutomatically={true}
             onFocus={this.onFocus}
             onChangeText={this.onChangeText}
-            onSubmitEditing={this.onSubmitFirstName}
+            onSubmitEditing={this.onSubmitName}
             returnKeyType="next"
-            label="First Name"
-            error={errors.firstname}
-          />
-
-          <TextField
-            ref={this.lastnameRef}
-            value={defaults.lastname}
-            autoCorrect={false}
-            enablesReturnKeyAutomatically={true}
-            onFocus={this.onFocus}
-            onChangeText={this.onChangeText}
-            onSubmitEditing={this.onSubmitLastName}
-            returnKeyType="next"
-            label="Last Name"
-            error={errors.lastname}
-          />
-
-          <TextField
-            ref={this.aboutRef}
-            value={defaults.about}
-            onFocus={this.onFocus}
-            onChangeText={this.onChangeText}
-            onSubmitEditing={this.onSubmitAbout}
-            returnKeyType="next"
-            multiline={true}
-            blurOnSubmit={true}
-            label="About (optional)"
-            characterRestriction={140}
+            label="Nome completo"
+            error={errors.name}
           />
 
           <TextField
             ref={this.emailRef}
-            defaultValue={defaultEmail}
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
@@ -191,8 +195,24 @@ class RegisterForm extends Component {
             onChangeText={this.onChangeText}
             onSubmitEditing={this.onSubmitEmail}
             returnKeyType="next"
-            label="Email Address"
+            label="Email"
             error={errors.email}
+          />
+
+          <TextField
+            ref={this.CPFRef}
+            value={cpf}
+            keyboardType="phone-pad"
+            autoCorrect={false}
+            enablesReturnKeyAutomatically={true}
+            onFocus={this.onFocus}
+            onChangeText={this.onChangeText}
+            onSubmitEditing={this.onSubmitCPF}
+            formatText={this.formatCPF}
+            returnKeyType="next"
+            label="CPF"
+            maxLength={14}
+            error={errors.cpf}
           />
 
           <TextField
@@ -205,13 +225,41 @@ class RegisterForm extends Component {
             onFocus={this.onFocus}
             onChangeText={this.onChangeText}
             onSubmitEditing={this.onSubmitPassword}
-            returnKeyType="done"
-            label="Password"
+            returnKeyType="next"
+            label="Senha"
             error={errors.password}
-            title="Choose wisely"
-            maxLength={30}
-            characterRestriction={20}
             renderRightAccessory={this.renderPasswordAccessory}
+          />
+
+          <TextField
+            ref={this.cellPhoneRef}
+            value={cellPhone}
+            keyboardType="phone-pad"
+            autoCorrect={false}
+            enablesReturnKeyAutomatically={true}
+            onFocus={this.onFocus}
+            onChangeText={this.onChangeText}
+            onSubmitEditing={this.onSubmitCellPhone}
+            returnKeyType="next"
+            label="Celular"
+            maxLength={15}
+            formatText={this.formatCellPhone}
+            error={errors.cellPhone}
+          />
+
+          <TextField
+            ref={this.birthDateRef}
+            value={birthDate}
+            keyboardType="phone-pad"
+            onFocus={this.onFocus}
+            onChangeText={this.onChangeText}
+            onSubmitEditing={this.onSubmitBirthDate}
+            returnKeyType="next"
+            blurOnSubmit={true}
+            label="Data de nascimento"
+            formatText={this.formatBirthDate}
+            maxLength={10}
+            error={errors.birthDate}
           />
         </View>
 

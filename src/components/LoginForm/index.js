@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, SafeAreaView, Platform } from 'react-native';
+import { ScrollView, View, SafeAreaView } from 'react-native';
 import { cpf } from 'cpf-cnpj-validator';
 import { TextField } from 'react-native-material-textfield';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -122,6 +122,10 @@ class LoginForm extends Component {
     );
   }
 
+  formatCPF = (text) => {
+    return text.replace(/^(\d{3})(\d{3})(\d{3})(\d{2}).*/, '$1.$2.$3-$4');
+  };
+
   render() {
     let { errors = {}, secureTextEntry, cpf } = this.state;
 
@@ -144,8 +148,8 @@ class LoginForm extends Component {
               onSubmitEditing={this.onSubmitCPF}
               returnKeyType="next"
               label="CPF"
-              maxLength={11}
-              characterRestriction={11}
+              formatText={this.formatCPF}
+              maxLength={14}
               error={errors.cpf}
             />
 
