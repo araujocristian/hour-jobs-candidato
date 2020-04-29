@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   Text,
   StatusBar,
-} from "react-native";
-import styles from "./styles";
-import Button from "../../components/Button";
-import NavBar from "../../components/NavBar";
+} from 'react-native';
+import styles from './styles';
+import NavBar from '../../components/NavBar';
+import LoginForm from '../../components/LoginForm';
 
 function Login({ navigation }) {
   return (
@@ -29,9 +29,7 @@ function Login({ navigation }) {
           <Text style={styles.subTitle}>Use seus dados para continuar!</Text>
         </View>
 
-        <View style={styles.loginForm}>
-          <Button label="Entrar" onPress={() => {}} />
-        </View>
+        <LoginForm navigation={navigation} />
 
         <TouchableOpacity style={styles.footer} onPress={() => {}}>
           <Text style={styles.footerText}>Esqueceu sua senha?</Text>
