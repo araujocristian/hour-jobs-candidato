@@ -8,9 +8,11 @@ import Button from '../Button';
 import styles from './styles';
 
 let defaults = {
-  cpf: '',
+  firstname: 'Eddard',
+  lastname: 'Stark',
+  about:
+    'Stoic, dutiful, and honorable man, considered to embody the values of the North',
 };
-
 class RegisterForm extends Component {
   constructor(props) {
     super(props);
@@ -18,12 +20,19 @@ class RegisterForm extends Component {
     this.onFocus = this.onFocus.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeText = this.onChangeText.bind(this);
-    this.onSubmitCPF = this.onSubmitCPF.bind(this);
+    this.onSubmitFirstName = this.onSubmitFirstName.bind(this);
+    this.onSubmitLastName = this.onSubmitLastName.bind(this);
+    this.onSubmitAbout = this.onSubmitAbout.bind(this);
+    this.onSubmitEmail = this.onSubmitEmail.bind(this);
     this.onSubmitPassword = this.onSubmitPassword.bind(this);
     this.onAccessoryPress = this.onAccessoryPress.bind(this);
 
-    this.CPFRef = this.updateRef.bind(this, 'cpf');
+    this.firstnameRef = this.updateRef.bind(this, 'firstname');
+    this.lastnameRef = this.updateRef.bind(this, 'lastname');
+    this.aboutRef = this.updateRef.bind(this, 'about');
+    this.emailRef = this.updateRef.bind(this, 'email');
     this.passwordRef = this.updateRef.bind(this, 'password');
+    this.houseRef = this.updateRef.bind(this, 'house');
 
     this.renderPasswordAccessory = this.renderPasswordAccessory.bind(this);
 
@@ -48,7 +57,7 @@ class RegisterForm extends Component {
   }
 
   onChangeText(text) {
-    ['cpf', 'password']
+    ['firstname', 'lastname', 'about', 'email', 'password']
       .map((name) => ({ name, ref: this[name] }))
       .forEach(({ name, ref }) => {
         if (ref.isFocused()) {
@@ -63,7 +72,19 @@ class RegisterForm extends Component {
     }));
   }
 
-  onSubmitCPF() {
+  onSubmitFirstName() {
+    this.lastname.focus();
+  }
+
+  onSubmitLastName() {
+    this.about.focus();
+  }
+
+  onSubmitAbout() {
+    this.email.focus();
+  }
+
+  onSubmitEmail() {
     this.password.focus();
   }
 
@@ -74,27 +95,19 @@ class RegisterForm extends Component {
   onSubmit() {
     let errors = {};
 
-    ['cpf', 'password'].forEach((name) => {
+    ['firstname', 'lastname', 'email', 'password'].forEach((name) => {
       let value = this[name].value();
 
       if (!value) {
-        errors[name] = 'Parece que você esqueceu esse campo.';
+        errors[name] = 'Should not be empty';
       } else {
         if ('password' === name && value.length < 6) {
-          errors[name] = 'Senha muito curta.';
-        }
-
-        if ('cpf' === name && value.length < 11) {
-          errors[name] = 'CPF inválido.';
-        } else if ('cpf' === name && !cpf.isValid(value)) {
-          errors[name] = 'CPF inválido.';
+          errors[name] = 'Too short';
         }
       }
     });
 
     this.setState({ errors });
-
-    this.props.navigation.navigate('Home');
   }
 
   updateRef(name, ref) {
@@ -118,53 +131,93 @@ class RegisterForm extends Component {
   }
 
   render() {
-    let { errors = {}, secureTextEntry } = this.state;
+    let { errors = {}, secureTextEntry, ...data } = this.state;
+    let { firstname, lastname } = data;
+
+    let defaultEmail = `${firstname || 'name'}@${lastname || 'house'}.com`
+      .replace(/\s+/g, '_')
+      .toLowerCase();
 
     return (
       <SafeAreaView style={styles.safeContainer}>
-        <ScrollView
-          style={styles.scroll}
-          contentContainerStyle={styles.contentContainer}
-          keyboardShouldPersistTaps="handled"
-        >
-          <View style={styles.container}>
-            <TextField
-              ref={this.CPFRef}
-              value={defaults.cpf}
-              keyboardType="phone-pad"
-              autoCorrect={false}
-              enablesReturnKeyAutomatically={true}
-              onFocus={this.onFocus}
-              onChangeText={this.onChangeText}
-              onSubmitEditing={this.onSubmitCPF}
-              returnKeyType="next"
-              label="CPF"
-              maxLength={11}
-              characterRestriction={11}
-              error={errors.cpf}
-            />
+        <View style={styles.container}>
+          <TextField
+            ref={this.firstnameRef}
+            value={defaults.firstname}
+            autoCorrect={false}
+            enablesReturnKeyAutomatically={true}
+            onFocus={this.onFocus}
+            onChangeText={this.onChangeText}
+            onSubmitEditing={this.onSubmitFirstName}
+            returnKeyType="next"
+            label="First Name"
+            error={errors.firstname}
+          />
 
-            <TextField
-              ref={this.passwordRef}
-              secureTextEntry={secureTextEntry}
-              autoCapitalize="none"
-              autoCorrect={false}
-              enablesReturnKeyAutomatically={true}
-              clearTextOnFocus={true}
-              onFocus={this.onFocus}
-              onChangeText={this.onChangeText}
-              onSubmitEditing={this.onSubmitPassword}
-              returnKeyType="done"
-              label="Senha"
-              error={errors.password}
-              renderRightAccessory={this.renderPasswordAccessory}
-            />
-          </View>
+          <TextField
+            ref={this.lastnameRef}
+            value={defaults.lastname}
+            autoCorrect={false}
+            enablesReturnKeyAutomatically={true}
+            onFocus={this.onFocus}
+            onChangeText={this.onChangeText}
+            onSubmitEditing={this.onSubmitLastName}
+            returnKeyType="next"
+            label="Last Name"
+            error={errors.lastname}
+          />
 
-          <View style={styles.buttonContainer}>
-            <Button label="Entrar" onPress={this.onSubmit} />
-          </View>
-        </ScrollView>
+          <TextField
+            ref={this.aboutRef}
+            value={defaults.about}
+            onFocus={this.onFocus}
+            onChangeText={this.onChangeText}
+            onSubmitEditing={this.onSubmitAbout}
+            returnKeyType="next"
+            multiline={true}
+            blurOnSubmit={true}
+            label="About (optional)"
+            characterRestriction={140}
+          />
+
+          <TextField
+            ref={this.emailRef}
+            defaultValue={defaultEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+            enablesReturnKeyAutomatically={true}
+            onFocus={this.onFocus}
+            onChangeText={this.onChangeText}
+            onSubmitEditing={this.onSubmitEmail}
+            returnKeyType="next"
+            label="Email Address"
+            error={errors.email}
+          />
+
+          <TextField
+            ref={this.passwordRef}
+            secureTextEntry={secureTextEntry}
+            autoCapitalize="none"
+            autoCorrect={false}
+            enablesReturnKeyAutomatically={true}
+            clearTextOnFocus={true}
+            onFocus={this.onFocus}
+            onChangeText={this.onChangeText}
+            onSubmitEditing={this.onSubmitPassword}
+            returnKeyType="done"
+            label="Password"
+            error={errors.password}
+            title="Choose wisely"
+            maxLength={30}
+            characterRestriction={20}
+            renderRightAccessory={this.renderPasswordAccessory}
+          />
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <Button label="Cadastar" onPress={this.onSubmit} />
+        </View>
       </SafeAreaView>
     );
   }

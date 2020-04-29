@@ -9,10 +9,11 @@ import {
 import styles from './styles';
 import NavBar from '../../components/NavBar';
 import RegisterForm from '../../components/RegisterForm';
+import { ScrollView } from 'react-native-gesture-handler';
 
 function Register({ navigation }) {
   return (
-    <>
+    <ScrollView>
       <StatusBar animated={true} barStyle="light-content" />
       <NavBar
         leftIcon="md-arrow-back"
@@ -32,10 +33,10 @@ function Register({ navigation }) {
         <RegisterForm navigation={navigation} />
 
         <TouchableOpacity style={styles.footer} onPress={() => {}}>
-          <Text style={styles.footerText}>Esqueceu sua senha?</Text>
+          <Text style={styles.footerText}>Termos e condições</Text>
         </TouchableOpacity>
       </View>
-    </>
+    </ScrollView>
   );
 }
 export default Register;
