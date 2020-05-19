@@ -1,11 +1,11 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import Splash from "./pages/Splash";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Home from "./pages/Home";
+import Splash from './pages/Splash';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Home from './pages/Home';
 
 const AppStack = createStackNavigator();
 

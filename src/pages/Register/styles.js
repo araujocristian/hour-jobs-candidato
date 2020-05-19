@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical: 20,
     paddingHorizontal: 25,
   },
   logo: {
@@ -33,6 +32,7 @@ export default StyleSheet.create({
   },
   footer: {
     alignSelf: 'center',
+    paddingBottom: 20,
   },
   footerText: {
     color: 'rgba(0,0,0,1)',

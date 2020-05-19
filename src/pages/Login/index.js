@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-  StatusBar,
-} from 'react-native';
+import { View, TouchableOpacity, Text, StatusBar } from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
 import styles from './styles';
 import NavBar from '../../components/NavBar';
 import LoginForm from '../../components/LoginForm';
@@ -13,16 +8,16 @@ import LoginForm from '../../components/LoginForm';
 function Login({ navigation }) {
   return (
     <>
-      <StatusBar animated={true} barStyle="light-content" />
-      <NavBar
-        leftIcon="md-arrow-back"
-        leftOnPress={() => {
-          navigation.goBack();
-        }}
-      />
+      <StatusBar animated barStyle="light-content" />
+      <SafeAreaView style={styles.container}>
+        <NavBar
+          leftIcon="md-arrow-back"
+          leftOnPress={() => {
+            navigation.goBack();
+          }}
+        />
 
-      <View style={styles.container}>
-        <View style={styles.logo}></View>
+        <View style={styles.logo} />
 
         <View style={styles.textWraper}>
           <Text style={styles.title}>Bem vindo!</Text>
@@ -34,7 +29,7 @@ function Login({ navigation }) {
         <TouchableOpacity style={styles.footer} onPress={() => {}}>
           <Text style={styles.footerText}>Esqueceu sua senha?</Text>
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
     </>
   );
 }

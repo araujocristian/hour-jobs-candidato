@@ -1,9 +1,9 @@
-import React from "react";
-import { View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import { View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-import styles from "./styles";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import styles from './styles';
 
 export default function NavBar({
   leftIcon,
@@ -15,12 +15,12 @@ export default function NavBar({
     <View style={styles.container}>
       {leftIcon && (
         <TouchableOpacity onPress={leftOnPress}>
-          <Ionicons name={leftIcon} size={50} color="#4A90E2" />
+          <Ionicons name={leftIcon} size={40} color="#4A90E2" />
         </TouchableOpacity>
       )}
       {rightIcon && (
         <TouchableOpacity onPress={rightOnPress}>
-          <Ionicons name={rightIcon} size={50} color="#4A90E2" />
+          <Ionicons name={rightIcon} size={40} color="#4A90E2" />
         </TouchableOpacity>
       )}
     </View>
