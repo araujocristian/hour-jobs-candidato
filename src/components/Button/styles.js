@@ -1,17 +1,17 @@
-import { StyleSheet } from "react-native";
+import styled from 'styled-components/native';
 
-export default StyleSheet.create({
-  button: {
-    width: 310,
-    height: 70,
-    backgroundColor: "rgba(74,144,226,1)",
-    borderRadius: 100,
-    justifyContent: "center",
-  },
-  buttonText: {
-    color: "rgba(255,255,255,1)",
-    fontSize: 24,
-    fontWeight: "bold",
-    alignSelf: "center",
-  },
-});
+export const ButtonWrapper = styled.TouchableOpacity`
+  width: 310px;
+  height: 70px;
+  background-color: ${props => props.theme.colors.primary};
+  border-radius: 100px;
+  justify-content: center;
+`;
+
+export const ButtonText = styled.Text`
+  color: ${props => props.theme.colors.white};
+  font-family: 'roboto-700';
+  font-size: 24px;
+  font-weight: bold;
+  align-self: center;
+`;

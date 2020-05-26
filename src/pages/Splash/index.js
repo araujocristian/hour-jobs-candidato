@@ -1,20 +1,19 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StatusBar } from 'react-native';
-import SafeAreaView from 'react-native-safe-area-view';
+import { TouchableOpacity, StatusBar } from 'react-native';
 
-import styles from './styles';
+import { SafeAreaViewWrapper, Image, PrincipalText } from './styles';
 import Button from '../../components/Button';
 
 function Splash(props) {
   return (
     <>
       <StatusBar animated barStyle="light-content" />
-      <SafeAreaView style={styles.container}>
-        <View style={styles.logo} />
-        <Text style={styles.text}>
+      <SafeAreaViewWrapper>
+        <Image />
+        <PrincipalText>
           Conectando as melhores empresas aos melhores profissionais.
-        </Text>
-
+        </PrincipalText>
+        {/*
         <Button
           label="Cadastre-se"
           onPress={() => props.navigation.navigate('Register')}
@@ -28,8 +27,8 @@ function Splash(props) {
           >
             <Text style={styles.footerLinkText}>Entre aqui!</Text>
           </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+        </View> */}
+      </SafeAreaViewWrapper>
     </>
   );
 }
