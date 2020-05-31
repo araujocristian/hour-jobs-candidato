@@ -15,7 +15,7 @@ export default StyleSheet.create({
   text: {
     color: '#121212',
     fontSize: 36,
-    // fontFamily: "roboto-regular",
+    fontFamily: 'roboto-regular',
   },
   createButton: {
     width: 310,
@@ -28,7 +28,6 @@ export default StyleSheet.create({
     color: 'rgba(255,255,255,1)',
     fontSize: 24,
     fontWeight: 'bold',
-    // fontFamily: "roboto-700",
     alignSelf: 'center',
   },
   footer: {
@@ -39,7 +38,7 @@ export default StyleSheet.create({
   footerText: {
     color: 'rgba(0,0,0,1)',
     fontSize: 20,
-    // fontFamily: "roboto-regular",
+    fontFamily: 'roboto-regular',
   },
   footerLink: {
     marginLeft: 5,
@@ -47,6 +46,6 @@ export default StyleSheet.create({
   footerLinkText: {
     color: 'rgba(74,144,226,1)',
     fontSize: 20,
-    // fontFamily: "roboto-regular",
+    fontFamily: 'roboto-regular',
   },
 });
