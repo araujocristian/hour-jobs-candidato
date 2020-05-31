@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { View, TouchableOpacity, Text, StatusBar } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -36,11 +35,4 @@ function Register({ navigation }) {
     </>
   );
 }
-
-Register.propTypes = {
-  navigation: PropTypes.shape({
-    goBack: PropTypes.func,
-  }).isRequired,
-};
-
 export default Register;

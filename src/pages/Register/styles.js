@@ -20,7 +20,7 @@ export default StyleSheet.create({
     fontSize: 36,
   },
   subTitle: {
-    color: '#7B7B7B',
+    color: 'rgba(123,123,123,1)',
     fontSize: 20,
   },
   loginForm: {
