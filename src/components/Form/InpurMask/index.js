@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { TextInputMask } from 'react-native-masked-text';
 

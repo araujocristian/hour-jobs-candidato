@@ -1,12 +1,19 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { TextInput } from 'react-native';
+import Reinput from 'reinput';
 import { useField } from '@unform/core';
 
 function Input({ name, onChangeText, rawValue, ...rest }) {
   const inputRef = useRef(null);
 
-  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const {
+    fieldName,
+    registerField,
+    defaultValue,
+    error,
+    clearError,
+  } = useField(name);
 
   const handleOnChange = useCallback(
     text => {
@@ -40,10 +47,12 @@ function Input({ name, onChangeText, rawValue, ...rest }) {
   }, [fieldName, rawValue, registerField]);
 
   return (
-    <TextInput
+    <Reinput
       ref={inputRef}
       defaultValue={defaultValue}
       onChangeText={handleOnChange}
+      onFocus={clearError}
+      error={error}
       {...rest}
     />
   );

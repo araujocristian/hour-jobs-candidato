@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 // import Register from './pages/Register';
 // import Home from './pages/Home';
 
-import SignIn from './test_comp/Login';
+import SignIn from './test_comp/SignIn';
 
 const AppStack = createStackNavigator();
 
