@@ -1,10 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Button, View } from 'react-native';
+import { useAuth } from '../../contexts/auth';
 
 const Home = () => {
+  const { signOut } = useAuth();
+
   return (
     <View>
-      <Text>HOME</Text>
+      <Button title="SignOut" onPress={signOut}>
+        HOME
+      </Button>
     </View>
   );
 };

@@ -3,12 +3,19 @@ import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Routes from "./src/routes";
+import { NavigationContainer } from '@react-navigation/native';
+import { AuthProvider } from "./src/contexts/auth";
+
 
 function AppContainer() {
   return (
-    <SafeAreaProvider>
-      <Routes />
-    </SafeAreaProvider>
+    <NavigationContainer>
+      <SafeAreaProvider>
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
+      </SafeAreaProvider>
+    </NavigationContainer>
   );
 }
 

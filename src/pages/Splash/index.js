@@ -5,7 +5,7 @@ import SafeAreaView from 'react-native-safe-area-view';
 import styles from './styles';
 import Button from '../../components/Button';
 
-function Splash(props) {
+function Splash({ navigation }) {
   return (
     <>
       <StatusBar animated barStyle="light-content" />
@@ -17,13 +17,13 @@ function Splash(props) {
 
         <Button
           label="Cadastre-se"
-          onPress={() => props.navigation.navigate('Register')}
+          onPress={() => navigation.navigate('Register')}
         />
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>Já tem uma conta?</Text>
           <TouchableOpacity
-            onPress={() => props.navigation.navigate('Login')}
+            onPress={() => navigation.navigate('SignIn')}
             style={styles.footerLink}
           >
             <Text style={styles.footerLinkText}>Entre aqui!</Text>
