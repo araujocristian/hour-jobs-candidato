@@ -1,5 +1,7 @@
 import api from './api';
 
-export function signIn(data) {
+function setSignIn(data) {
   api.post('/auth', data);
 }
+
+export default setSignIn;

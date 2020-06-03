@@ -1,16 +1,12 @@
 import { StyleSheet } from 'react-native';
+import { general, colors } from '../../styles';
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    paddingHorizontal: 25,
-  },
+  ...general,
   logo: {
     width: 50,
     height: 50,
-    backgroundColor: 'rgba(230, 230, 230,1)',
+    backgroundColor: colors.gray,
   },
   text: {
     color: '#121212',
@@ -20,23 +16,24 @@ export default StyleSheet.create({
   createButton: {
     width: 310,
     height: 70,
-    backgroundColor: 'rgba(74,144,226,1)',
+    backgroundColor: colors.primary,
     borderRadius: 100,
     justifyContent: 'center',
   },
   createButtonText: {
-    color: 'rgba(255,255,255,1)',
+    color: colors.white,
     fontSize: 24,
     fontWeight: 'bold',
     alignSelf: 'center',
   },
-  footer: {
+  loginText: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
+    justifyContent: 'flex-end',
   },
   footerText: {
-    color: 'rgba(0,0,0,1)',
+    color: colors.black,
     fontSize: 20,
     fontFamily: 'roboto-regular',
   },
@@ -44,7 +41,7 @@ export default StyleSheet.create({
     marginLeft: 5,
   },
   footerLinkText: {
-    color: 'rgba(74,144,226,1)',
+    color: colors.primary,
     fontSize: 20,
     fontFamily: 'roboto-regular',
   },

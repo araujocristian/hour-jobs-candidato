@@ -6,9 +6,13 @@ const general = {
   container: {
     flex: 1,
     backgroundColor: colors.background,
+    paddingHorizontal: metrics.doubleBaseMargin,
+  },
+  alignVerticalCenter: {
+    alignItems: 'center',
   },
   section: {
-    margin: metrics.doubleBaseMargin,
+    marginVertical: metrics.doubleBaseMargin,
   },
   sectionTitle: {
     color: colors.text,

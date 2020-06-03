@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 import AsyncStorage from '@react-native-community/async-storage';
-import * as auth from '../services/auth';
 import api from '../services/api';
 
 const AuthContext = createContext();
@@ -25,7 +25,8 @@ export const AuthProvider = ({ children }) => {
 
   // TODO: ADD TRY/CATCH
   async function signIn(data) {
-    const { tipo, token } = await auth.signIn(data);
+    const response = await api.post('/auth', { ...data });
+    const { tipo, token } = response.data;
 
     setSigned(true);
 
@@ -46,8 +47,11 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 export function useAuth() {
   const context = useContext(AuthContext);
-
   return context;
 }

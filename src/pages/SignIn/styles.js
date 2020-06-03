@@ -1,27 +1,26 @@
 import { StyleSheet } from 'react-native';
+import { general, colors } from '../../styles';
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    paddingHorizontal: 25,
-  },
+  ...general,
+  // container: {
+  //   flex: 1,
+  //   justifyContent: 'center',
+  //   alignItems: 'stretch',
+  //   paddingHorizontal: 25,
+  // },
   scroll: {
     backgroundColor: 'transparent',
   },
-  contentContainer: {
-    padding: 8,
-  },
+  contentContainer: {},
   buttonContainer: {
-    paddingTop: 8,
-    margin: 8,
+    paddingTop: 30,
     alignItems: 'center',
   },
   logo: {
     width: 50,
     height: 50,
-    backgroundColor: 'rgba(230, 230, 230,1)',
+    backgroundColor: colors.gray,
     alignSelf: 'center',
     marginBottom: 30,
   },
@@ -29,11 +28,11 @@ export default StyleSheet.create({
     marginBottom: 30,
   },
   title: {
-    color: '#121212',
+    color: colors.black,
     fontSize: 36,
   },
   subTitle: {
-    color: 'rgba(123,123,123,1)',
+    color: colors.gray,
     fontSize: 20,
   },
   loginForm: {
@@ -47,7 +46,10 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   footerText: {
-    color: 'rgba(0,0,0,1)',
+    color: colors.black,
     fontSize: 20,
+  },
+  formContent: {
+    marginTop: 40,
   },
 });

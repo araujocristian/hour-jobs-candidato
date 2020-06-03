@@ -60,8 +60,13 @@ function Input({ name, onChangeText, rawValue, ...rest }) {
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
-  onChangeText: PropTypes.func.isRequired,
-  rawValue: PropTypes.string.isRequired,
+  onChangeText: PropTypes.func,
+  rawValue: PropTypes.string,
+};
+
+Input.defaultProps = {
+  rawValue: '',
+  onChangeText: () => {},
 };
 
 export default Input;

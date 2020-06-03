@@ -1,16 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from './styles';
 
-export default function NavBar({
-  leftIcon,
-  leftOnPress,
-  rightIcon,
-  rightOnPress,
-}) {
+function NavBar({ leftIcon, leftOnPress, rightIcon, rightOnPress }) {
   return (
     <View style={styles.container}>
       {leftIcon && (
@@ -26,3 +22,19 @@ export default function NavBar({
     </View>
   );
 }
+
+NavBar.propTypes = {
+  leftIcon: PropTypes.string,
+  leftOnPress: PropTypes.func,
+  rightIcon: PropTypes.string,
+  rightOnPress: PropTypes.func,
+};
+
+NavBar.defaultProps = {
+  leftIcon: null,
+  leftOnPress: () => {},
+  rightIcon: null,
+  rightOnPress: () => {},
+};
+
+export default NavBar;
