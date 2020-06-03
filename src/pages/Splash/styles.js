@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { general, colors } from '../../styles';
+import { general, colors, metrics } from '../../styles';
 
 export default StyleSheet.create({
   ...general,
@@ -9,9 +9,10 @@ export default StyleSheet.create({
     backgroundColor: colors.gray,
   },
   text: {
-    color: '#121212',
-    fontSize: 36,
+    color: colors.black,
+    fontSize: 40,
     fontFamily: 'roboto-regular',
+    justifyContent: 'flex-end',
   },
   createButton: {
     width: 310,
@@ -31,6 +32,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     justifyContent: 'flex-end',
+    marginBottom: metrics.doubleBaseMargin,
   },
   footerText: {
     color: colors.black,

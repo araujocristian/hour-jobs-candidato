@@ -11,21 +11,24 @@ function Splash({ navigation }) {
     <>
       <StatusBar animated backgroundColor="#fff" barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
-        <View style={[styles.alignVerticalCenter, { flex: 0.6 }]}>
-          <View style={{ height: 66 }} />
-          <View style={[styles.logo, styles.section]} />
-          <Text style={[styles.text, styles.section]}>
+        <View style={[styles.alignVerticalCenter, { flex: 0.7 }]}>
+          <View style={{ flex: 2 }}>
+            <View style={{ height: 66 }} />
+            <View style={[styles.logo, styles.section]} />
+          </View>
+          <Text style={[styles.text, { flex: 2 }]}>
             Conectando as melhores empresas aos melhores profissionais.
           </Text>
         </View>
 
-        <View style={[styles.alignVerticalCenter, { flex: 0.4 }]}>
+        <View style={[styles.alignVerticalCenter, { flex: 0.3 }]}>
           <Button
             label="Cadastre-se"
             onPress={() => navigation.navigate('Register')}
+            style={styles.section}
           />
 
-          <View style={[styles.loginText, styles.section]}>
+          <View style={[styles.loginText]}>
             <Text style={styles.footerText}>Já tem uma conta?</Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('SignIn')}

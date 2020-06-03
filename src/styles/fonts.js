@@ -1,4 +1,5 @@
 const fonts = {
+  large: 36,
   input: 16,
   regular: 14,
   medium: 12,

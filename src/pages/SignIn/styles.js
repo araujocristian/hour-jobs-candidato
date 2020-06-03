@@ -39,8 +39,6 @@ export default StyleSheet.create({
     height: 400,
     alignSelf: 'center',
     marginBottom: 30,
-
-    backgroundColor: 'red',
   },
   footer: {
     alignSelf: 'center',
