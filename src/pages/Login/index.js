@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, Text, StatusBar } from 'react-native';
+import { View, TouchableOpacity, Text, StatusBar, Image } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import styles from './styles';
 import NavBar from '../../components/NavBar';
@@ -17,7 +17,10 @@ function Login({ navigation }) {
           }}
         />
 
-        <View style={styles.logo} />
+        <Image
+          style={[styles.logo, styles.section]}
+          source={require('../../../assets/img/hourJob.png')}
+        />
 
         <View style={styles.textWraper}>
           <Text style={styles.title}>Bem vindo!</Text>

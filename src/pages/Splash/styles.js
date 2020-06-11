@@ -4,14 +4,16 @@ import { general, colors, metrics } from '../../styles';
 export default StyleSheet.create({
   ...general,
   logo: {
-    width: 50,
-    height: 50,
-    backgroundColor: colors.gray,
+    width:'100%',
+    height: undefined,
+    aspectRatio: 90/25,
+    backgroundColor: colors.white,
   },
   text: {
-    color: colors.black,
-    fontSize: 40,
+    color: colors.primary,
     fontFamily: 'roboto-regular',
+    fontWeight: 'bold',
+    fontSize: 36,
     justifyContent: 'flex-end',
   },
   createButton: {

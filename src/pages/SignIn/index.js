@@ -4,6 +4,7 @@ import {
   StatusBar,
   View,
   Text,
+  Image,
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
@@ -68,7 +69,10 @@ const SignIn = ({ navigation }) => {
           centerContent
           showsVerticalScrollIndicator={false}
         >
-          <View style={[styles.logo, styles.section]} />
+        <Image
+          style={[styles.logo, styles.section]}
+          source={require('../../../assets/img/hourJob.png')}
+        />
 
           <View style={[styles.textWraper, styles.section]}>
             <Text style={styles.title}>Bem vindo!</Text>
