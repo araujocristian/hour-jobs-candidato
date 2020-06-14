@@ -17,6 +17,7 @@ import { useAuth } from '../../contexts/auth';
 import { Input } from '../../components/Form';
 import Button from '../../components/Button';
 import NavBar from '../../components/NavBar';
+import Icon from '../../../assets/img/icon.png';
 import schema from './schema';
 import styles from './styles';
 
@@ -69,10 +70,7 @@ const SignIn = ({ navigation }) => {
           centerContent
           showsVerticalScrollIndicator={false}
         >
-        <Image
-          style={[styles.logo, styles.section]}
-          source={require('../../../assets/img/hourJob.png')}
-        />
+          <Image style={[styles.logo, styles.section]} source={Icon} />
 
           <View style={[styles.textWraper, styles.section]}>
             <Text style={styles.title}>Bem vindo!</Text>

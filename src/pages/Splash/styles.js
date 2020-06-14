@@ -1,13 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { general, colors, metrics } from '../../styles';
+
+const deviceWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
   ...general,
   logo: {
-    width:'100%',
-    height: undefined,
-    aspectRatio: 90/25,
-    backgroundColor: colors.white,
+    // width: deviceWidth,
+    height: 200,
+    aspectRatio: 90 / 25,
+    backgroundColor: '#121323',
   },
   text: {
     color: colors.primary,
