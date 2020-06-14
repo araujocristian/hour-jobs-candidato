@@ -15,11 +15,7 @@ function Splash({ navigation }) {
         <View style={[styles.alignVerticalCenter, { flex: 0.7 }]}>
           <View style={{ flex: 1 }}>
             <View style={{ height: 66 }} />
-            <Image
-              style={{ aspectRatio: 2 / 1.27 }}
-              resizeMode="contain"
-              source={LogoText}
-            />
+            <Image style={styles.logo} resizeMode="contain" source={LogoText} />
           </View>
           <Text style={[styles.text, { flex: 1 }]}>
             Conexões imediatas entre empresas e trabalhadores
