@@ -3,12 +3,6 @@ import { general, colors } from '../../styles';
 
 export default StyleSheet.create({
   ...general,
-  // container: {
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'stretch',
-  //   paddingHorizontal: 25,
-  // },
   scroll: {
     backgroundColor: 'transparent',
   },

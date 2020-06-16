@@ -24,7 +24,11 @@ function Register({ navigation }) {
           <Text style={styles.subTitle}>Conta pra gente quem é você!</Text>
         </View>
 
-        <ScrollView style={styles.scrollContainer}>
+        <ScrollView
+          style={styles.scrollContainer}
+          centerContent
+          showsVerticalScrollIndicator={false}
+        >
           <RegisterForm navigation={navigation} />
 
           <TouchableOpacity style={styles.footer} onPress={() => {}}>

@@ -25,6 +25,7 @@
     "prettier/prettier": "error",
     "no-param-reassign": 0,
     "react/jsx-props-no-spreading": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-one-expression-per-line": 0
   }
 }
