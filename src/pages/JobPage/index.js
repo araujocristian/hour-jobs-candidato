@@ -8,7 +8,15 @@ import Button from '../../components/Button';
 
 const JobPage = ({ route, navigation }) => {
   const { item } = route.params;
-  const { cargo, empresa, bairro, descricao, periodo, remuneracao } = item;
+  const {
+    cargo,
+    empresa,
+    bairro,
+    descricao,
+    periodo,
+    remuneracao,
+    color,
+  } = item;
   const subTitle = `${empresa}, ${bairro}`;
   const footerText = `R$ ${remuneracao} - ${periodo} Horas`;
 
@@ -40,7 +48,7 @@ const JobPage = ({ route, navigation }) => {
               style={{
                 width: 60,
                 height: 60,
-                backgroundColor: '#4a90e2',
+                backgroundColor: color,
                 borderRadius: 5,
                 marginBottom: 20,
                 justifyContent: 'center',

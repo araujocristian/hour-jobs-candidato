@@ -8,9 +8,22 @@ const Card = ({ navigation, item }) => {
   const subTitle = `${empresa}, ${bairro}`;
   const footerText = `R$ ${remuneracao} - ${periodo} Horas`;
 
+  function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  const color = getRandomColor();
+
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('JobPage', { item })}
+      onPress={() =>
+        navigation.navigate('JobPage', { item: { ...item, color } })
+      }
       style={styles.container}
     >
       <View
@@ -23,7 +36,7 @@ const Card = ({ navigation, item }) => {
           style={{
             width: 50,
             height: 50,
-            backgroundColor: '#4a90e2',
+            backgroundColor: color,
             borderRadius: 5,
             marginRight: 10,
             justifyContent: 'center',
