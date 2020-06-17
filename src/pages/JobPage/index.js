@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
 import NavBar from '../../components/NavBar';
 import styles from './styles';
 import Button from '../../components/Button';
+import Modal from '../../components/Modal';
 
 const JobPage = ({ route, navigation }) => {
+  const [modal, setModal] = useState(false);
   const { item } = route.params;
   const {
     cargo,
@@ -89,11 +91,12 @@ const JobPage = ({ route, navigation }) => {
 
           <Button
             label="Candidatar-se"
-            onPress={() => {}}
+            onPress={() => setModal(true)}
             style={{ alignSelf: 'center' }}
           />
         </ScrollView>
       </SafeAreaView>
+      <Modal show={modal} close={() => setModal(false)} />
     </View>
   );
 };

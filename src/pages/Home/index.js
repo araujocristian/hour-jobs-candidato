@@ -17,31 +17,31 @@ const Home = ({ navigation }) => {
       setJobs([
         {
           id: '1',
-          cargo: 'Auxiliar de Escritório',
-          empresa: 'Escritório Sharp',
+          cargo: 'Vendedora',
+          empresa: 'Vitória Restaurante',
           descricao:
-            'Atuar na área financeiro, contas a pagar, receber, conciliação bancário entre outras atividades pertinentes a área de atuação.',
+            'Profissional responsável por executar atividades relacionadas à venda no restaurante.',
           bairro: 'Santana, SP',
           perfilDaVaga: true,
           periodo: 8,
-          remuneracao: 100,
-          status: 'ABERTO',
-        },
-        {
-          id: '2',
-          cargo: 'Auxiliar de Enfermagem',
-          empresa: 'Clinica Vida',
-          bairro: 'Vila Mariana, SP',
-          descricao:
-            'Irá executar atividades auxiliares na assistência de enfermagem aos pacientes em atendimento na instituição, utilizando técnicas apropriadas.',
-          perfilDaVaga: true,
-          periodo: 6,
           remuneracao: 150,
           status: 'ABERTO',
         },
         {
+          id: '2',
+          cargo: 'Vendedora',
+          empresa: 'Mariana Silva ME',
+          bairro: 'Vila Mariana, SP',
+          descricao:
+            'Irá executar atividades auxiliares na assistência de vendas e em atendimento na instituição, utilizando técnicas apropriadas.',
+          perfilDaVaga: true,
+          periodo: 6,
+          remuneracao: 200,
+          status: 'ABERTO',
+        },
+        {
           id: '3',
-          cargo: 'Garçom',
+          cargo: 'Garçonete',
           empresa: 'Restaurante Tela',
           bairro: 'Vila Madalena, SP',
           descricao:
@@ -53,7 +53,7 @@ const Home = ({ navigation }) => {
         },
         {
           id: '4',
-          cargo: 'Vendedor',
+          cargo: 'Vendedora',
           empresa: 'Lojas Guarda',
           bairro: 'Centro, SP',
           descricao:
@@ -103,7 +103,7 @@ const Home = ({ navigation }) => {
               marginBottom: 20,
             }}
           >
-            <Text style={styles.title}>Olá, Roberto!</Text>
+            <Text style={styles.title}>Olá, Eliane!</Text>
             <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
               <Image style={styles.userImage} source={ProfilePhoto} />
             </TouchableOpacity>

@@ -12,8 +12,8 @@ const Profile = ({ navigation }) => {
   const { signOut } = useAuth();
 
   const usuario = {
-    nome: 'Roberto Victor',
-    cargo: 'Auxiliar de Escritório',
+    nome: 'Eliane Lopes',
+    cargo: 'Vendedora',
   };
 
   return (
@@ -40,47 +40,7 @@ const Profile = ({ navigation }) => {
               <Text style={styles.subTitle}>{usuario.cargo}</Text>
             </View>
           </View>
-          {/* <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-            <View
-              style={{
-                width: 60,
-                height: 60,
-                backgroundColor: '#4a90e2',
-                borderRadius: 5,
-                marginBottom: 20,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Text style={{ color: '#fff', fontSize: 40 }}>
-                {empresa.charAt(0)}
-              </Text>
-            </View>
-            <Text style={styles.title}>{cargo}</Text>
-            <Text style={styles.subTitle}>{subTitle}</Text>
-            <Text style={styles.footerText}>{footerText}</Text>
-          </View>
 
-          <Text style={styles.description}>{descricao}</Text>
-
-          <View style={{ marginBottom: 15 }}>
-            <Text style={styles.label}>Experiência: </Text>
-            <Text style={styles.text}>{vaga.experiencia}</Text>
-          </View>
-
-          <View style={{ marginBottom: 15 }}>
-            <Text style={styles.label}>Habilidades: </Text>
-            {vaga.habilidades.map(habilidade => (
-              <Text key={habilidade} style={styles.text}>
-                - {habilidade}
-              </Text>
-            ))}
-          </View>
-
-          <View style={{ marginBottom: 15 }}>
-            <Text style={styles.label}>Início previsto: </Text>
-            <Text style={styles.text}>{vaga.inicio}</Text>
-          </View> */}
           <Button
             label="Sair"
             onPress={signOut}
